@@ -2,6 +2,7 @@ from stats import get_word_count
 from stats import get_book_text
 from stats import get_letter_count
 from stats import get_sorted_letter_dict
+import sys
 
 def create_book_report(filepath: str) -> None:
     booktext = get_book_text(filepath)
@@ -19,6 +20,10 @@ def create_book_report(filepath: str) -> None:
             print(f"{letter["char"]}: {letter["num"]}")
 
 def main() -> None:
-    create_book_report("books/frankenstein.txt")
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    
+    create_book_report(sys.argv[1])
     
 main()
